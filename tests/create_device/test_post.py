@@ -1,11 +1,7 @@
 import requests
 from tests.configuration import SERVICE_URL
 
-from tests.enum.global_enums import GlobalErrorMessages
-from tests.tools_for_tests import get_first_device_id
-
 from tests.schemas.get_validate import CreatedDevice
-from pydantic import TypeAdapter
 
 
 def test_create_device_status_code():
