@@ -3,28 +3,34 @@ from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 
 
-class DeviceData(BaseModel):
-    data: Optional[Dict[str, Any]] = None
-
 class Device(BaseModel): 
     id: str
     name: str
-    data: DeviceData
+    data: Optional[Dict[str, Any]] = None
 
 
 class DevicesResponse(BaseModel):
     devices: List[Device] = []
 
 
+class CreatedDevice(BaseModel):
+    id: str
+    name: str
+    data: Optional[Dict[str, Any]] = None
+    createdAt: str
 
-# class DeviceData(BaseModel):
-#     color: str
-#     capacity: str
 
-# class Device(BaseModel):
-#     id: str
-#     name: str
-#     data: DeviceData
+# {
+#    "id": "7",
+#    "name": "Apple MacBook Pro 16",
+#    "data": {
+#       "year": 2019,
+#       "price": 1849.99,
+#       "CPU model": "Intel Core i9",
+#       "Hard disk size": "1 TB"
+#    },
+#    "createdAt": "2022-11-21T20:06:23.986Z"
+# }
 
 
 # [{'id': '1', 'name': 'Google Pixel 6 Pro', 'data': {'color': 'Cloudy White', 'capacity': '128 GB'}}, 
