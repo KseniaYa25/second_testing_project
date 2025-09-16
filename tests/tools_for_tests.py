@@ -49,5 +49,4 @@ def create_device():
     json_response = response.json()
     device_id = json_response.get('id')
 
-    print(f"Booking created with id: {device_id}")
     return device_id

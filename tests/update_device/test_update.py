@@ -2,6 +2,7 @@ import requests
 from tests.configuration import SERVICE_URL
 from tests.tools_for_tests import create_device
 from tests.schemas.get_validate import UpdatedDevice
+from pydantic import TypeAdapter
 
 
 
@@ -54,6 +55,41 @@ def test_update_device_validation():
 
     print("Новые данные:", validated_response)
 
+
+
+# {
+#    "name": "Apple MacBook Pro 16 (Updated Name)"
+# }
+def test_patch_device_status_code():
+    device_id = create_device()
+
+    patch_data = {
+        "name": "Apple MacBook Pro 16 (Updated Name)"
+    }
+
+    response = requests.patch(
+        url=f"{SERVICE_URL}/{device_id}",
+        json=patch_data,
+    )
+
+    assert response.status_code == 200, \
+        f"PATCH failed: {response.status_code}, Response: {response.text}"
+
+def test_patch_device_validation():
+    device_id = create_device()
+
+    patch_data = {
+        "name": "Apple MacBook Pro 16 (Updated Name)"
+    }
+
+    response = requests.patch(
+        url=f"{SERVICE_URL}/{device_id}",
+        json=patch_data,
+    )
+
+    json_data = response.json()
+    validated_response = TypeAdapter(UpdatedDevice).validate_python(json_data)
+    print("Новые данные:", validated_response)
 
 
 #     {
