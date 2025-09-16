@@ -19,6 +19,11 @@ class CreatedDevice(BaseModel):
     data: Optional[Dict[str, Any]] = None
     createdAt: str
 
+class UpdatedDevice(BaseModel):
+    id: str
+    name: str
+    data: Optional[Dict[str, Any]] = None
+    updatedAt: str
 
 # {
 #    "id": "7",

@@ -27,3 +27,27 @@ def get_ids():
     return id_list
 
 get_ids()
+
+
+
+def create_device():
+    device_data = {
+        "name": "Apple MacBook Pro 16",
+        "data": {
+            "year": 2019,
+            "price": 1849.99,
+            "CPU model": "Intel Core i9",
+            "Hard disk size": "1 TB"
+        },
+    }
+
+    response = requests.post(
+        url=SERVICE_URL,
+        json=device_data
+    )
+    
+    json_response = response.json()
+    device_id = json_response.get('id')
+
+    print(f"Booking created with id: {device_id}")
+    return device_id
